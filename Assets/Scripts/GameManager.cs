@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject PlayerPrefab;
     private GameObject Player;
+    public Vector3 Offset;
 
 	// Use this for initialization
 	void Start ()

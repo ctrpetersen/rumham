@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float Thrust;
     public float MovThrust;
     public float MaxAngularVelocity;
+    public float JumpForce;
     
 
 	void Start ()
@@ -25,11 +26,18 @@ public class Player : MonoBehaviour
             rb.AddTorque(Thrust);
             rb.AddForce(Vector2.left * MovThrust);
 	    }
+
         else if (Input.GetKey("d"))
 	    {
 	        rb.AddTorque(-Thrust);
 	        rb.AddForce(Vector2.right * MovThrust);
         }
+
+	    if (Input.GetKeyDown("space") && isGrounded)
+	    {
+            rb.AddForce(Vector2.up * JumpForce);
+	        isGrounded = false;
+	    }
 	}
 
     void FixedUpdate()
@@ -41,5 +49,22 @@ public class Player : MonoBehaviour
     {
         if (rb.angularVelocity < -MaxAngularVelocity) { rb.angularVelocity = -MaxAngularVelocity; }
         if (rb.angularVelocity > MaxAngularVelocity) { rb.angularVelocity = MaxAngularVelocity; }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        StartCoroutine(JumpDelay());
+        isGrounded = true;
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+
+    }
+
+    IEnumerator JumpDelay()
+    {
+        yield return new WaitForSeconds(0.4F);
+        isGrounded = false;
     }
 }

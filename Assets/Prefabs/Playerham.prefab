@@ -156,6 +156,7 @@ MonoBehaviour:
   Thrust: 10
   MovThrust: 5
   MaxAngularVelocity: 700
+  JumpForce: 1200
 --- !u!212 &212767678569035282
 SpriteRenderer:
   m_ObjectHideFlags: 1
