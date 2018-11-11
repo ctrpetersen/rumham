@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerPrefab;
     private GameObject Player;
     public Vector3 Offset;
+    public Transform Camera;
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +20,6 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
+		Camera.position = new Vector3(Player.transform.position.x + Offset.x, Player.transform.position.y + Offset.y, Offset.z);
 	}
 }
