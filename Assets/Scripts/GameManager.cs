@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject PlayerPrefab;
     public Vector3 Offset;
+    public Vector3 Spawnpoint;
     public Transform Camera;
     public Image LevelIntro;
 
@@ -17,8 +18,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Player = Instantiate(PlayerPrefab, new Vector3(-6, 0, 1), Quaternion.identity);
-        StartCoroutine(FadeImage());
+        Player = Instantiate(PlayerPrefab, Spawnpoint, Quaternion.identity);
+        if (LevelIntro != null) { StartCoroutine(FadeImage());  }
     }
 
     // Update is called once per frame
